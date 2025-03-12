@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{%load crispy_forms_tags%}
+{%block content%}
+
+{%if messages%}
+  <div class=".col-lg-3">
+    
+       {%for message in messages%}
+       <p {%if message.tags%} class="text-{{message.tags}}" {%endif%}>{{message}}</p>
+       {%endfor%}
+    
+  </div>
+{%endif%}
+
+
+<h1>Edit Your Profile</h1>
+<a href="{%url 'pass_change'%}" class="btn btn-warning">Change Password</a>
+
+<form method="post" class="container">
+   {%csrf_token%}
+   {{form | crispy}}
+   <button class="btn btn-warning" type="submit">Submit</button>
+   
+</form>
+
+{%endblock%}

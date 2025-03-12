@@ -1,0 +1,77 @@
+{% extends 'base.html' %} {% load static %} {%block content%}
+<!-- <h1>this is homepage</h1> -->
+
+<div
+  class="container d-flex flex-wrap gap-5 justify-content-center align-items-center p-5"
+>
+  <div class="col-sm-7">
+    <strong>Welocome to CARMART.</strong> <br /><b
+      >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minus
+      consequuntur sequi expedita illum aut iusto fuga tempore voluptas magni
+      nulla totam ipsam reprehenderit dolor obcaecati illo, ipsa minima maxime,
+      optio nisi quos. Alias iste, laborum temporibus beatae libero voluptas
+      dolorem?</b
+    >
+  </div>
+  <div class="col-sm-4">
+    <img src="{% static 'web.jpg'%}" alt="" style="width: 80%" />
+  </div>
+</div>
+
+<!-- category section -->
+
+<div class="container d-flex flex-wrap gap-3 p-5 align-items-center">
+  {%for cat in brands%}
+
+  <div class="card justify-content-center text-center" style="width: 18rem">
+    <a href="{%url 'brandwise' cat.slug%}"
+      ><img
+        src="{{cat.image.url}}"
+        class="card-img-top"
+        alt="..."
+        style="width: 50%; height: 50%"
+    /></a>
+    <div class="card-body">
+      <p class="card-text">{{cat.name}}</p>
+    </div>
+  </div>
+
+  {%endfor%}
+</div>
+
+<!-- car section  -->
+
+<div class="container">
+  <h3>Total Car Found :{{data | length}}</h3>
+  <!-- {{car}} -->
+
+  <div class="d-flex flex-wrap gap-5">
+    {%for car in data%}
+    <div class="card" style="width: 18rem">
+      <img src="{{car.image.url}}" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">{{car.name}}</h5>
+        <p class="card-text">{{car.description}}</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Price :{{car.price}}</li>
+        <li class="list-group-item">Quantity:{{car.quantity}}</li>
+        <li class="list-group-item"><b>{{car.brand}}</b></li>
+      </ul>
+      <div class="card-body">
+        <a href="#" class="card-link">View Detail</a>
+        {%if request.user.is_authenticated%}
+            <form action="{% url 'buy' car.id %}" method="post" class="d-inline">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-primary">Buy Now</button>
+            </form>
+          
+
+        {%endif%}
+      </div>
+    </div>
+
+    {%endfor%}
+  </div>
+</div>
+{%endblock%}
