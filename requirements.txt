@@ -1,0 +1,40 @@
+# ============================================================================
+# Car Rental Management System - Requirements
+# ============================================================================
+# 
+# Python Version: 3.8+
+# Django Version: 5.1.1
+# Database: SQLite (included with Python)
+# Frontend Framework: Bootstrap 5
+#
+# Installation:
+#   pip install -r requirements.txt
+#
+# ============================================================================
+
+# Core Framework
+Django==5.1.1
+
+# Image Processing
+Pillow==10.0.0
+
+# Form Rendering & Styling
+django-crispy-forms==2.1
+crispy-bootstrap5==2.0.0
+
+# Database & ORM Support
+sqlparse==0.4.4
+
+# ASGI/WSGI Support
+asgiref==3.7.1
+
+# ============================================================================
+# Technology Stack Summary:
+# ============================================================================
+# - Backend: Django 5.1.1 (Python Web Framework)
+# - Database: SQLite3 (Relational Database)
+# - Frontend: HTML5, CSS3, Bootstrap 5
+# - Forms: Django Crispy Forms with Bootstrap 5
+# - Image Handling: Pillow
+# - Python Version: 3.8 or higher
+# ============================================================================
