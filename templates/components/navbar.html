@@ -37,15 +37,17 @@
           Logout
         </a>
       {% else %}
-        <a href="{{ login_url }}" class="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 {% if request.path == login_url %}bg-slate-100 text-slate-900{% endif %}">
-          Login
-        </a>
-        <a href="{{ register_url }}" class="inline-flex items-center gap-2 rounded-full bg-sky-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-sky-700">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M18 7.5 11.5 14 8 10.5" />
-          </svg>
-          Sign up
-        </a>
+        <div class="ml-auto flex items-center gap-2">
+          <a href="{{ login_url }}" class="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 {% if request.path == login_url %}bg-slate-100 text-slate-900{% endif %}">
+            Login
+          </a>
+          <a href="{{ register_url }}" class="inline-flex items-center gap-2 rounded-full bg-sky-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-sky-700">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M18 7.5 11.5 14 8 10.5" />
+            </svg>
+            Sign up
+          </a>
+        </div>
       {% endif %}
     </div>
   </div>

@@ -1,60 +1,70 @@
 {% extends 'base.html' %}
-{%load crispy_forms_tags%}
-{%block content%}
-
-{%if messages%}
-  <div class=".col-lg-3">
-    
-       {%for message in messages%}
-       <p {%if message.tags%} class="text-{{message.tags}}" {%endif%}>{{message}}</p>
-       {%endfor%}
-    
-  </div>
-{%endif%}
-
-
-<!-- <h1>this is profile page</h1> -->
-<a href="{%url 'edit_profile' %}" class="inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-orange-200 transition duration-200 hover:-translate-y-0.5 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-orange-300">Edit Profile</a>
-
-<!-- <form method="post" class="container">
-   {%csrf_token%}
-   <h1>{{type}} Here</h1>
-   {{form | crispy}}
-   <button class="btn btn-warning" type="submit">Submit</button>
-   
-</form> -->
-
-<!-- car section  -->
-<div class="container">
-  <!-- <h3>Total Car Found :{{data | length}}</h3> -->
-  <!-- {{car}} -->
-  <!-- {{cars}} -->
-  
-  <div class="d-flex flex-wrap gap-5">
-        {%for car in cars%}
-        <!-- {{car}} -->
-      <div class="card" style="width: 18rem">
-          <img src="{{car.car.image.url}}" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <h5 class="card-title">{{car.car.name}}</h5>
-            <p class="card-text">{{car.car.description}}</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Price :{{car.car.price}}</li>
-            <li class="list-group-item">Quantity:{{car.car.quantity}}</li>
-            <li class="list-group-item"><b>{{car.car.brand}}</b></li>
-          </ul>
-          <div class="card-body">
-            <a href="#" class="card-link">View Detail</a>
-            <!-- {%if request.user.is_authenticated%}
-            <a href="#" class="card-link">Buy Now</a>
-            {%endif%} -->
-          </div>
-        </div>
-        
-        {%endfor%}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-cyan-700 px-4 py-10 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-7xl space-y-8">
+    {% if messages %}
+    <div class="space-y-2">
+      {% for message in messages %}
+      <div class="rounded-xl border border-cyan-100 bg-cyan-50 px-4 py-3 text-sm text-cyan-800">
+        {{ message }}
       </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <section class="overflow-hidden rounded-[2rem] border border-white/10 bg-white/10 shadow-2xl shadow-slate-950/40 backdrop-blur-xl">
+      <div class="bg-gradient-to-r from-cyan-500/20 via-slate-900/80 to-slate-950 p-8 text-white sm:p-10 lg:p-12">
+        <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.35em] text-cyan-200">Profile dashboard</p>
+            <h1 class="mt-3 text-3xl font-bold sm:text-4xl">Welcome back, {{ request.user.username }}</h1>
+            <p class="mt-4 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
+              Manage your account details and keep track of the cars you have selected or purchased.
+            </p>
+          </div>
+          <a href="{% url 'edit_profile' %}" class="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-200 transition duration-200 hover:-translate-y-0.5 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-orange-300">
+            Edit Profile
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="rounded-[2rem] border border-white/10 bg-slate-50/90 p-8 shadow-xl shadow-slate-950/20">
+      <div class="mb-6 flex items-center justify-between">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-600">Your cars</p>
+          <h2 class="mt-2 text-2xl font-semibold text-slate-900">Saved favorites</h2>
+        </div>
+        <p class="text-sm text-slate-500">{{ cars|length }} item{{ cars|length|pluralize }}</p>
+      </div>
+
+      {% if cars %}
+      <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {% for car in cars %}
+        <article class="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+          <img src="{{ car.car.image.url }}" alt="{{ car.car.name }}" class="h-56 w-full object-cover" />
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-slate-900">{{ car.car.name }}</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600">{{ car.car.description }}</p>
+          </div>
+          <div class="space-y-2 border-t border-slate-100 px-6 py-5 text-sm text-slate-600">
+            <div class="flex items-center justify-between"><span>Price</span><span class="font-semibold text-slate-900">{{ car.car.price }}</span></div>
+            <div class="flex items-center justify-between"><span>Quantity</span><span class="font-semibold text-slate-900">{{ car.car.quantity }}</span></div>
+            <div class="flex items-center justify-between"><span>Brand</span><span class="font-semibold text-cyan-600">{{ car.car.brand }}</span></div>
+          </div>
+          <div class="border-t border-slate-100 px-6 py-5">
+            <a href="#" class="inline-flex rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700">View detail</a>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="rounded-2xl border border-dashed border-slate-300 bg-slate-100 px-6 py-10 text-center text-slate-500">
+        No cars added yet.
+      </div>
+      {% endif %}
+    </section>
   </div>
-
-
-{%endblock%}
+</div>
+{% endblock %}

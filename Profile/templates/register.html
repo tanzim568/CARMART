@@ -1,23 +1,37 @@
- {% extends 'base.html' %}
- {%load crispy_forms_tags%}
- {%block content%}
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-cyan-700 px-4 py-12 sm:px-6 lg:px-8">
+  <div class="mx-auto flex max-w-5xl flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-white/10 shadow-2xl shadow-slate-950/40 backdrop-blur-xl lg:flex-row">
+    <div class="flex flex-1 flex-col justify-center bg-gradient-to-br from-cyan-500/20 via-slate-900/80 to-slate-950 p-8 text-white sm:p-10 lg:p-12">
+      <p class="text-sm font-semibold uppercase tracking-[0.35em] text-cyan-200">Welcome aboard</p>
+      <h1 class="mt-4 text-3xl font-bold sm:text-4xl">{{ type }} Here</h1>
+      <p class="mt-4 max-w-md text-sm leading-7 text-slate-300 sm:text-base">
+        Create your account and unlock premium car listings, personal profile access, and a smoother buying experience.
+      </p>
+    </div>
 
- {%if messages%}
-   <div class=".col-lg-3">
-     
-        {%for message in messages%}
-        <p {%if message.tags%} class="text-{{message.tags}}" {%endif%}>{{message}}</p>
-        {%endfor%}
-     
-   </div>
- {%endif%}
- 
- <form method="post" class="container">
-    {%csrf_token%}
-    <h1>{{type}} Here</h1>
-    {{form | crispy}}
-    <button class="mt-4 inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-sky-500 via-cyan-500 to-emerald-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-cyan-200 transition duration-200 hover:-translate-y-0.5 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-cyan-300" type="submit">Submit</button>
-    
- </form>
+    <div class="flex-1 bg-slate-50/95 p-8 sm:p-10 lg:p-12">
+      {% if messages %}
+      <div class="mb-6 space-y-2">
+        {% for message in messages %}
+        <div class="rounded-xl border border-cyan-100 bg-cyan-50 px-4 py-3 text-sm text-cyan-800">
+          {{ message }}
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
 
- {%endblock%}
+      <form method="post" class="space-y-4">
+        {% csrf_token %}
+        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          {{ form|crispy }}
+        </div>
+        <button class="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-sky-500 via-cyan-500 to-emerald-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-cyan-200 transition duration-200 hover:-translate-y-0.5 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-cyan-300" type="submit">
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
