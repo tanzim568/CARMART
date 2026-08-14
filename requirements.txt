@@ -1,5 +1,5 @@
 # ============================================================================
-# Car Rental Management System - Requirements
+# CARMART - Car Marketplace & Rental Platform - Requirements
 # ============================================================================
 # 
 # Python Version: 3.8+
@@ -29,7 +29,7 @@ sqlparse==0.4.4
 asgiref==3.7.1
 
 # ============================================================================
-# Technology Stack Summary:
+# Technology Stack Summary (CARMART):
 # ============================================================================
 # - Backend: Django 5.1.1 (Python Web Framework)
 # - Database: SQLite3 (Relational Database)

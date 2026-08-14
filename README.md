@@ -1,6 +1,6 @@
-# Car Rental Management System
+# CARMART - Car Marketplace & Rental Platform
 
-A comprehensive Django web application for managing car rentals, brands, user profiles, and shopping carts. This project provides a complete solution for a car rental platform with user authentication, inventory management, and order tracking capabilities.
+A comprehensive Django web application for managing car inventory, brands, user profiles, and shopping carts. CARMART provides a complete solution for a car marketplace platform with user authentication, inventory management, and order tracking capabilities.
 
 ---
 
@@ -36,7 +36,7 @@ A comprehensive Django web application for managing car rentals, brands, user pr
 ## Project Structure
 
 ```
-car_project/
+carmart/
 ├── BrandModel/                  # Car brands management app
 │   ├── models.py               # Brand model definition
 │   ├── views.py                # Brand-related views
@@ -74,7 +74,7 @@ car_project/
 │   ├── admin.py                # Admin interface configuration
 │   └── migrations/             # Database migration files
 │
-├── car_project/                 # Main project configuration
+├── carmart/                     # Main project configuration
 │   ├── settings.py             # Django settings and configuration
 │   ├── urls.py                 # Main URL configuration
 │   ├── wsgi.py                 # WSGI configuration
@@ -130,7 +130,7 @@ car_project/
 
 ```bash
 git clone <repository-url>
-cd car_project
+cd carmart
 ```
 
 ### Step 2: Create Virtual Environment
@@ -291,7 +291,7 @@ class Cart(models.Model):
 - [ ] Order confirmation and tracking
 - [ ] Email notifications
 - [ ] Advanced search and filtering
-- [ ] Car rental date management
+- [ ] Rental date management
 - [ ] Review and rating system
 - [ ] API endpoints (REST API)
 - [ ] Mobile application
@@ -326,11 +326,7 @@ class Cart(models.Model):
 4. Push to branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
----
 
-## License
-
-This project is part of the Mid Term Exam for Week 5 of the Phitron Django course.
 
 ---
 
